@@ -3,6 +3,21 @@
     <!-- Global Toasts -->
     <ToastNotification />
 
+    <!-- Global Beta Banner -->
+    <div class="bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-950 text-indigo-100 px-4 py-1.5 text-xs text-center border-b border-indigo-500/20 flex items-center justify-center gap-2">
+      <span class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-bold uppercase tracking-wider text-[10px] border border-indigo-400/30">Beta</span>
+      <span class="font-medium text-slate-300">FitSense is in active beta preview.</span>
+      <a
+        v-if="feedbackUrl"
+        :href="feedbackUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline font-bold text-indigo-400 hover:text-indigo-300 transition ml-1"
+      >
+        Share feedback &rarr;
+      </a>
+    </div>
+
     <!-- AI Fit Assistant Floating Widget -->
     <AIFitAssistant />
 
@@ -150,6 +165,8 @@
 <script setup lang="ts">
 import { ref, computed, watchEffect } from 'vue'
 
+const config = useRuntimeConfig()
+const feedbackUrl = computed(() => config.public.feedbackUrl || '')
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 const localePath = useLocalePath()

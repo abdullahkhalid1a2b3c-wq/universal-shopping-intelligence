@@ -124,10 +124,17 @@ async def security_and_limits_middleware(request: Request, call_next):
 # ---------------------------------------------------------------------------
 # Strict CORS Middleware
 # ---------------------------------------------------------------------------
+# Restrictive regex matching FitSense Vercel deployments (production and preview)
+# Strictly anchored at both ends; does NOT allow arbitrary *.vercel.app sites
+FITSENSE_VERCEL_ORIGIN_REGEX = (
+    r"^https:\/\/universal-shopping-intelligence(-[a-zA-Z0-9_-]+)?\.vercel\.app$"
+)
+
 origins = [o.strip() for o in settings.allowed_origins.split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins or ["http://localhost:3000"],
+    allow_origin_regex=FITSENSE_VERCEL_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type", "Accept", "Origin", "X-Requested-With"],
