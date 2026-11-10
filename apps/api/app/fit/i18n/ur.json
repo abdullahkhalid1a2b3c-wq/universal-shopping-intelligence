@@ -1,0 +1,8 @@
+{
+  "recommendation_normal": "آرام دہ {fit_preference} فٹنگ کے لیے {recommended_size} تجویز کیا جاتا ہے۔",
+  "recommendation_tight_alt": "{recommended_size} تجویز کیا جاتا ہے کیونکہ {second_best_size} سائز {problem_dim} پر تنگ ہو سکتا ہے۔ {recommended_size} آرام دہ {fit_preference} فٹ دیتا ہے۔",
+  "between_sizes": "آپ کا سائز {recommended_size} اور {second_best_size} کے درمیان ہے۔ بہتر فٹنگ کے لیے ہم {recommended_size} کا مشورہ دیتے ہیں۔",
+  "no_good_fit": "اس سائز چارٹ میں کوئی مکمل فٹ نہیں ملا۔ {recommended_size} سب سے قریبی متبادل ہے مگر کچھ جگہوں سے تنگ یا کھلا ہو سکتا ہے۔",
+  "insufficient_measurements": "درست سائز معلوم کرنے کے لیے برائے مہربانی اپنے سینے، کمر، یا ہپ کی پیمائش درج کریں۔"
+}
+

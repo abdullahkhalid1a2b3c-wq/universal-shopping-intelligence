@@ -1,0 +1,8 @@
+{
+  "recommendation_normal": "Comfortable {fit_preference} fit ke liye {recommended_size} behtar rahega.",
+  "recommendation_tight_alt": "{recommended_size} behtar rahega kyun ke {second_best_size} {problem_dim} par tang ho sakta hai. {recommended_size} aik pur-sukoon {fit_preference} fit dega.",
+  "between_sizes": "Aap ka naap {recommended_size} aur {second_best_size} ke darmiyan hai. Behtar fit ke liye {recommended_size} behtareen intekhab hai.",
+  "no_good_fit": "Is chart mein koi ideal fit nahi mila. {recommended_size} sab se qareeb hai, lekin kuch jagah se tang ya khula ho sakta hai.",
+  "insufficient_measurements": "Sahi size maloom karne ke liye barah-e-karam apna chest, waist ya hip ka naap darj karein."
+}
+

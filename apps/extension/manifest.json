@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "FitSense — Universal Size & Fit Assistant",
+  "version": "0.1.0",
+  "description": "Get your exact size recommendation on Pakistan's top fashion stores.",
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_title": "FitSense"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.khaadi.com/*",
+    "*://*.sapphireonline.pk/*",
+    "*://*.breakout.com.pk/*",
+    "*://*.diners.com.pk/*",
+    "*://*.outfitters.com.pk/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.khaadi.com/*",
+        "*://*.sapphireonline.pk/*",
+        "*://*.breakout.com.pk/*",
+        "*://*.diners.com.pk/*",
+        "*://*.outfitters.com.pk/*"
+      ],
+      "js": [
+        "src/content/content.ts"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.ts",
+    "type": "module"
+  }
+}

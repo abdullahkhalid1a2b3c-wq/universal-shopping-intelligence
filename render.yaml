@@ -1,0 +1,61 @@
+# ============================================================================
+# Render Blueprint Specification — FitSense API
+# Deploys the FastAPI service as a containerized web service on Render.
+# ============================================================================
+
+services:
+  - type: web
+    name: fitsense-api
+    env: docker
+    dockerfilePath: apps/api/Dockerfile
+    dockerContext: apps/api
+    plan: free # Can be upgraded to starter ($7/mo) to eliminate cold starts
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+
+    envVars:
+      # Supabase Production Connectivity
+      - key: SUPABASE_URL
+        sync: false
+        # e.g. https://<project-ref>.supabase.co
+
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+        # Found in: Supabase Dashboard > Project Settings > API > service_role (secret)
+
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+        # Found in: Supabase Dashboard > Project Settings > API > JWT Settings > JWT Secret
+
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+        # Found in: Supabase Dashboard > Project Settings > API > anon / public key
+
+      - key: SUPABASE_JWKS_URL
+        sync: false
+        # Optional override: https://<project-ref>.supabase.co/auth/v1/.well-known/jwks.json
+
+      # CORS Whitelist (Points to Vercel production frontend)
+      - key: ALLOWED_ORIGINS
+        sync: false
+        # Set to your Vercel deployment URL: https://fitsense.vercel.app,http://localhost:3000
+
+      # Optional Error Monitoring
+      - key: SENTRY_DSN
+        sync: false
+        # Optional Sentry DSN for crash reporting (no customer PII is transmitted)
+
+      # Optional AI Providers (For Retailer Product Parsing Assistance)
+      - key: OPENROUTER_API_KEY
+        sync: false
+
+      - key: MISTRAL_API_KEY
+        sync: false
+
+      - key: GEMINI_API_KEY
+        sync: false
+
+      - key: XAI_API_KEY
+        sync: false
+

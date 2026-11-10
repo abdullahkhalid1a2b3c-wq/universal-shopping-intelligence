@@ -1,0 +1,8 @@
+{
+  "recommendation_normal": "{recommended_size} is recommended for a comfortable {fit_preference} fit.",
+  "recommendation_tight_alt": "{recommended_size} is recommended because {second_best_size} may be tight around the {problem_dim}. {recommended_size} gives a comfortable {fit_preference} fit.",
+  "between_sizes": "You are between sizes {recommended_size} and {second_best_size}. We recommend {recommended_size} for a better overall fit.",
+  "no_good_fit": "No optimal fit was found in this chart. {recommended_size} is the closest match, but may feel tight or loose in some areas.",
+  "insufficient_measurements": "Please add your chest, waist, or hip measurements to receive an accurate size recommendation."
+}
+

@@ -1,0 +1,248 @@
+{
+  "_review_note": "ROMAN URDU TRANSLATION DRAFT: Requires verification by native Urdu speaker before production pilot.",
+  "app": {
+    "name": "FitSense",
+    "tagline": "Pakistani fashion ke liye Universal Fit Intelligence"
+  },
+  "nav": {
+    "home": "Home",
+    "try": "Size Maloom Karein",
+    "saved": "Saved Sizes",
+    "profile": "Profile",
+    "privacy": "Privacy",
+    "login": "Log in",
+    "signup": "Sign up",
+    "logout": "Log out"
+  },
+  "landing": {
+    "hero": {
+      "title": "Apna size andaze se mat lagayein",
+      "subtitle": "Aik profile. Khaadi, Sapphire, Breakout, Diners aur Outfitters par bilkul sahi size recommendation."
+    },
+    "problem": {
+      "title": "Size ka masla",
+      "description": "Khaadi ka Medium Sapphire ke Medium se mukhtalif hai. Har brand ki pemaish alag hoti hai, is liye aap kai size mangwate hain ya khareedte hi nahi."
+    },
+    "howItWorks": {
+      "title": "Yeh kaise kaam karta hai",
+      "step1": "Apni body profile aik martaba banayein",
+      "step2": "Koi bhi store aur product select karein",
+      "step3": "Confidence score ke sath apna sahi size hasil karein",
+      "description": "Hum aapki asal pemaish ka brand ke real size chart se mawazna karte hain."
+    },
+    "retailers": {
+      "title": "Retailers ke liye",
+      "description": "Size ki wapsi kam karein aur buyers ka bharosa barhayein.",
+      "cta": "Hamare sath rabta karein"
+    }
+  },
+  "auth": {
+    "loginTitle": "Khush aamdeed",
+    "loginSubtitle": "Apni universal sizing profile tak rasai hasil karein",
+    "signupTitle": "Nayi profile banayein",
+    "signupSubtitle": "Tamam Pakistani fashion brands ke liye aik profile",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "loginBtn": "Log in",
+    "signupBtn": "Account banayein",
+    "noAccount": "Account nahi hai? Sign up karein",
+    "hasAccount": "Pehle se account hai? Log in karein",
+    "loginSuccess": "Kamiyabi se log in ho gaya!",
+    "signupSuccess": "Account ban gaya! Aayein profile mukammal karein."
+  },
+  "onboarding": {
+    "title": "Profile Setup",
+    "step1": "Preferences",
+    "step2": "Privacy Raza-mandi",
+    "step3": "Pemaish (Measurements)",
+    "step4": "Fit Style",
+    "skip": "Abhi ke liye chorein",
+    "next": "Aage barhein",
+    "finish": "Mukammal karein",
+    "step1Title": "Zaban aur Unit",
+    "step1Subtitle": "Size aur pemaish dekhne ke liye apni pasand select karein",
+    "preferredLanguage": "Zaban",
+    "preferredUnit": "Pemaish ki Unit",
+    "genderCategory": "Shopping Preference",
+    "gender": {
+      "womens": "Khawateen ka Fashion",
+      "mens": "Mardon ka Fashion",
+      "unisex": "Tamam / Unisex"
+    },
+    "step2Title": "Aap ka Data, Aap ka Control",
+    "step2Subtitle": "Hum aapki body measurements ko bilkul private aur mehfooz rakhte hain.",
+    "consentBullet1": "Hum measurements sirf product recommendation calculate karne ke liye store karte hain.",
+    "consentBullet2": "Aap ka data kabhi kisi ko becha ya share nahi kiya jata.",
+    "consentBullet3": "Aap kisi bhi waqt apna data download ya hamesha ke liye delete kar sakte hain.",
+    "consentCheckbox": "Main FitSense ko apni body measurements aur fit preferences store karne ki ijazat deta/deti hoon.",
+    "privacyLink": "Hamari mukammal Privacy Policy parhein",
+    "step3Title": "Aap ki Body Measurements",
+    "step3Subtitle": "Apna naap darj karein ya apne kisi pasandeeda kapray ko naapein.",
+    "orGarment": "Ya apne kisi kapray ka naap darj karein",
+    "garmentModalTitle": "Apne kisi kapray ko naapein",
+    "garmentModalDesc": "Kisi achi fitting wale shirt ya kurte ko table par flat bichayein aur chest ki chaurai naapein.",
+    "flatChest": "Flat Chest Chaurai",
+    "flatWaist": "Flat Kamar Chaurai",
+    "garmentShoulder": "Kandhe ki Chaurai",
+    "garmentLength": "Lambai",
+    "calculateEstimateBtn": "Andaza-shuda body measurement ke tor par lagayein",
+    "estimateBadge": "Kapray se andaza lagaya gaya. Aap niche kisi bhi value ko tabdeel kar sakte hain.",
+    "step4Title": "Fit Preferences",
+    "step4Subtitle": "Aap har category mein kesi fitting pasand karte hain?",
+    "fittedDesc": "Jism ke sath tight fitting",
+    "regularDesc": "Standard, aaram-deh daily fit",
+    "looseDesc": "Khula aur roomy silhouette"
+  },
+  "measurements": {
+    "chest": "Chest / Seena",
+    "waist": "Kamar / Waist",
+    "hip": "Hip",
+    "shoulder": "Kandha / Shoulder",
+    "sleeve": "Asteen / Sleeve",
+    "inseam": "Shalwar / Trouser Inseam",
+    "thigh": "Raan / Thigh",
+    "kameez_length": "Kameez ki Lambai",
+    "torso_length": "Torso Length",
+    "height": "Qadd (Height)",
+    "weight": "Wazan (Weight)",
+    "tips": {
+      "chest": "Seene ke sab se broad hissay ke gird horizontal naapein.",
+      "waist": "Apni natural kamar ke gird naapein.",
+      "hip": "Hip ke sab se chaure hissay ke gird naapein.",
+      "shoulder": "Aik kandhe ke kinaray se doosre kinaray tak peeth se naapein.",
+      "sleeve": "Kandhe ki haddi se kalai tak naapein.",
+      "inseam": "Taang ke andar se ooper se takhnay tak naapein.",
+      "kameez_length": "Kandhe ke jor se niche jahan tak daaman chahiye naapein."
+    }
+  },
+  "profile": {
+    "title": "Meri Profile",
+    "subtitle": "Apni universal body profile aur sizing preferences manage karein",
+    "completeness": "Profile Completeness",
+    "completenessHelp": "Chest, waist aur hip shamil karne se recommendation ka bharosa barh jata hai.",
+    "saveChanges": "Tabdeeliyaan save karein",
+    "savedSuccess": "Profile kamiyabi se update ho gayi!",
+    "sections": {
+      "basics": "Bunyadi Maloomat",
+      "measurements": "Body Measurements",
+      "preferences": "Category ke mutabiq Fit Style",
+      "privacy": "Privacy aur Data Consent"
+    },
+    "storeMeasurementsTitle": "Body Measurements Mehfooz Karein",
+    "storeMeasurementsDesc": "Online fashion brands pe foran size recommendations ke liye measurements profile mein mehfooz rakhein.",
+    "dataRightsTitle": "Data Rights aur Portability",
+    "dataRightsDesc": "Apne data ki copy download karein ya kisi bhi waqt apna account mukammal tor par delete karein.",
+    "downloadDataBtn": "Mera Data Download Karein (JSON)",
+    "deleteAccountBtn": "Account Delete Karein",
+    "deleteModalTitle": "Account Delete Karna Chahte Hain?",
+    "deleteModalDesc": "Yeh action wapis nahi ho sakta. Aap ki saari measurements aur saved sizes database se mukammal khatam ho jayein gi.",
+    "keepAnonymousFeedbackCheckbox": "Doosray shoppers ke liye anonymous feedback barqarar rakhein (naam aur measurements foran mita di jayein gi)",
+    "confirmDeleteBtn": "Haan, Mukammal Delete Karein",
+    "withdrawConsentConfirm": "Consent wapis lenay se aap ki measurements delete ho jayein gi. Kya aap jari rakhna chahte hain?",
+    "consentWithdrawnSuccess": "Measurement storage consent wapis le li gayi. Measurements delete ho gayi hain.",
+    "consentGrantedSuccess": "Measurement storage enable ho gayi hai.",
+    "exportSuccess": "Data export kamiyabi se download ho gaya.",
+    "accountDeletedSuccess": "Aap ka account aur tamam data delete ho gaya hai."
+  },
+  "try": {
+    "title": "Universal Size Finder",
+    "subtitle": "Apna behtareen size janne ke liye koi bhi store aur product select karein.",
+    "selectRetailer": "Brand Select Karein",
+    "selectProduct": "Product Select Karein",
+    "searchProductPlaceholder": "Product ka naam dhoondein...",
+    "findSizeBtn": "Mera Size Batayein",
+    "guestNotice": "Guest shopper hain? Foran recommendation ke liye chest measurement darj karein, ya profile use karne ke liye log in karein.",
+    "demoBadge": "Demo data",
+    "unverifiedBadge": "Unverified size chart",
+    "confidence": "Bharosa",
+    "recommendedSize": "Recommended Size",
+    "alternative": "Doosra Option",
+    "whySection": "Yeh size kyun behtar hai?",
+    "bodyLabel": "Aap ka Jism",
+    "garmentLabel": "Kapra",
+    "easeLabel": "Gunjayish (Ease)",
+    "targetBand": "Target Band",
+    "verdict": {
+      "too_tight": "Bohat tang",
+      "snug": "Thora chust",
+      "good": "Perfect fit",
+      "roomy": "Khula",
+      "too_loose": "Bohat khula"
+    },
+    "saveSizeBtn": "Yeh size save karein",
+    "savedSizeSuccess": "Size wishlist mein save ho gaya!",
+    "goToStoreBtn": "Brand store par khareedein"
+  },
+  "saved": {
+    "title": "Saved Products & Sizes",
+    "subtitle": "Woh kapray jo aap khareedne ka irada rakhte hain",
+    "empty": "Abhi koi item save nahi hua. Size Finder se size save karein!",
+    "buyPrompt": "Kya aap ne yeh item khareed liya hai?",
+    "boughtBtn": "Haan, khareed liya",
+    "feedbackBtn": "Fit Feedback dein",
+    "dismissBtn": "Khatam karein"
+  },
+  "feedback": {
+    "title": "Khareedari ke baad Fit Feedback",
+    "subtitle": "Doosre shoppers ke liye size behtar banane mein madad karein",
+    "sizeBought": "Khareeda gaya Size",
+    "fitResult": "Asal mein kaisa fit aaya?",
+    "results": {
+      "too_tight": "Bohat tang tha",
+      "slightly_tight": "Thora tang tha",
+      "perfect": "Bilkul perfect fit",
+      "slightly_loose": "Thora khula tha",
+      "too_loose": "Bohat khula tha"
+    },
+    "problemArea": "Problem Area (agar koi ho)",
+    "problemAreas": {
+      "none": "Koi nahi",
+      "chest": "Chest / Seena",
+      "waist": "Kamar",
+      "hip": "Hip",
+      "shoulder": "Kandha",
+      "sleeve": "Asteen",
+      "length": "Lambai"
+    },
+    "wasReturned": "Kya aap ne wapis ya exchange kiya?",
+    "note": "Mazeed raye (optional)",
+    "submitBtn": "Feedback submit karein",
+    "success": "Shukriya! Aap ke feedback se FitSense mazeed behtar hota hai."
+  },
+  "privacy": {
+    "title": "Privacy aur Data Protection",
+    "subtitle": "Aap ki body ka data sirf aap ki milkiyat hai.",
+    "legalNotice": "Note: Yeh privacy policy draft legal review ke marhale mein hai.",
+    "sections": {
+      "whatWeCollect": "Hum kya collect karte hain",
+      "whatWeCollectBody": "Hum sirf wahi measurements aur preferences lete hain jo aap khud provide karte hain.",
+      "howWeUse": "Data kaise use hota hai",
+      "howWeUseBody": "Aap ka naap sirf sahi size calculate karne ke liye use hota hai. Hum data kabhi kisi ko nahi bechte.",
+      "rights": "Aap ke huqooq",
+      "rightsBody": "Aap ko kisi bhi waqt apna data download karne aur account hamesha ke liye delete karne ka mukammal haq hai."
+    },
+    "downloadBtn": "Mera Data Download Karein (JSON)",
+    "deleteAccountBtn": "Account aur Measurements Delete Karein",
+    "confirmModal": {
+      "title": "Kya aap waqai account delete karna chahte hain?",
+      "text": "Yeh amal wapis nahi ho sakta. Tamam body measurements, saved sizes aur recommendations foran mita di jayein gi.",
+      "confirmBtn": "Haan, sab delete karein",
+      "cancelBtn": "Cancel"
+    }
+  },
+  "common": {
+    "cm": "cm",
+    "in": "in",
+    "loading": "Load ho raha hai...",
+    "save": "Save karein",
+    "cancel": "Cancel",
+    "optional": "Optional",
+    "required": "Zaroori",
+    "fitted": "Fitted",
+    "regular": "Regular",
+    "loose": "Loose",
+    "high": "Ziyada",
+    "medium": "Darmiyana",
+    "low": "Kam"
+  }
+}

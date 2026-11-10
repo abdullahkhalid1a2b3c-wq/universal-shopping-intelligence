@@ -1,0 +1,247 @@
+{
+  "app": {
+    "name": "FitSense",
+    "tagline": "Universal Fit Intelligence for Pakistani fashion"
+  },
+  "nav": {
+    "home": "Home",
+    "try": "Find Size",
+    "saved": "Saved Sizes",
+    "profile": "Profile",
+    "privacy": "Privacy",
+    "login": "Log in",
+    "signup": "Sign up",
+    "logout": "Log out"
+  },
+  "landing": {
+    "hero": {
+      "title": "Stop guessing your size",
+      "subtitle": "One profile. Perfect size recommendations across Khaadi, Sapphire, Breakout, Diners, Outfitters, and more."
+    },
+    "problem": {
+      "title": "The sizing problem",
+      "description": "Medium at Khaadi is not the same as Medium at Sapphire. Every brand has different measurements, so you end up ordering multiple sizes, returning what doesn't fit, or hesitating at checkout."
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "step1": "Create your body profile once",
+      "step2": "Pick any store and product",
+      "step3": "Get your exact size recommendation with a confidence score",
+      "description": "We compare your measurements with each brand's real size chart — no averages, no guesswork."
+    },
+    "retailers": {
+      "title": "For retailers",
+      "description": "Reduce sizing-related returns and increase buyer confidence. FitSense gives your shoppers their perfect size before purchase.",
+      "cta": "Partner with us"
+    }
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to access your universal sizing profile",
+    "signupTitle": "Create your profile",
+    "signupSubtitle": "One profile for all Pakistani fashion brands",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "loginBtn": "Log in",
+    "signupBtn": "Create account",
+    "noAccount": "Don't have an account? Sign up",
+    "hasAccount": "Already have an account? Log in",
+    "loginSuccess": "Signed in successfully!",
+    "signupSuccess": "Account created! Let's set up your profile."
+  },
+  "onboarding": {
+    "title": "Profile Setup",
+    "step1": "Preferences",
+    "step2": "Privacy Consent",
+    "step3": "Measurements",
+    "step4": "Fit Style",
+    "skip": "Skip for now",
+    "next": "Continue",
+    "finish": "Complete profile",
+    "step1Title": "Language & Units",
+    "step1Subtitle": "Choose how you'd like to view measurements and sizing",
+    "preferredLanguage": "Language",
+    "preferredUnit": "Measurement Unit",
+    "genderCategory": "Shopping Preference",
+    "gender": {
+      "womens": "Women's Fashion",
+      "mens": "Men's Fashion",
+      "unisex": "All / Unisex"
+    },
+    "step2Title": "Your Data, Your Control",
+    "step2Subtitle": "We treat your body measurements as strictly confidential personal data.",
+    "consentBullet1": "We store your measurements to calculate product-specific recommendations.",
+    "consentBullet2": "Your personal measurements are NEVER sold or shared with retailers.",
+    "consentBullet3": "You can download a complete JSON copy or permanently delete your account anytime.",
+    "consentCheckbox": "I explicitly consent to FitSense storing my body measurements and fit preferences.",
+    "privacyLink": "Read our full Privacy Policy",
+    "step3Title": "Your Body Measurements",
+    "step3Subtitle": "Enter your measurements or measure a favorite garment you already own.",
+    "orGarment": "Or measure a garment you already own",
+    "garmentModalTitle": "Measure a garment you own",
+    "garmentModalDesc": "Lay a well-fitting top flat on a table and measure across the chest (armpit to armpit).",
+    "flatChest": "Flat Chest Width",
+    "flatWaist": "Flat Waist Width",
+    "garmentShoulder": "Shoulder Width",
+    "garmentLength": "Garment Length",
+    "calculateEstimateBtn": "Apply as estimated body measurements",
+    "estimateBadge": "Estimated from garment. You can edit any value below.",
+    "step4Title": "Fit Preferences",
+    "step4Subtitle": "How do you prefer each clothing category to fit your body?",
+    "fittedDesc": "Snug and body-hugging",
+    "regularDesc": "Standard ease, comfortable daily fit",
+    "looseDesc": "Relaxed and roomy silhouette"
+  },
+  "measurements": {
+    "chest": "Chest / Bust",
+    "waist": "Waist",
+    "hip": "Hips",
+    "shoulder": "Shoulder Width",
+    "sleeve": "Sleeve Length",
+    "inseam": "Inseam",
+    "thigh": "Thigh",
+    "kameez_length": "Kameez Length",
+    "torso_length": "Torso Length",
+    "height": "Height",
+    "weight": "Weight",
+    "tips": {
+      "chest": "Measure around the fullest part of your chest, keeping tape horizontal.",
+      "waist": "Measure around your natural waistline, where you bend side to side.",
+      "hip": "Measure around the widest part of your hips and seat.",
+      "shoulder": "Measure from the tip of one shoulder across your upper back to the other tip.",
+      "sleeve": "Measure from shoulder point down to your wrist bone.",
+      "inseam": "Measure along the inside of your leg from the crotch to your ankle.",
+      "kameez_length": "Measure from the shoulder collar seam straight down to your desired hemline."
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your universal body profile and sizing preferences",
+    "completeness": "Profile Completeness",
+    "completenessHelp": "Adding chest, waist, and hip measurements ensures high-confidence recommendations.",
+    "saveChanges": "Save changes",
+    "savedSuccess": "Profile updated successfully!",
+    "sections": {
+      "basics": "Basic Information",
+      "measurements": "Body Measurements",
+      "preferences": "Fit Preferences by Category",
+      "privacy": "Privacy & Data Consent"
+    },
+    "storeMeasurementsTitle": "Store Body Measurements",
+    "storeMeasurementsDesc": "Keep your body measurements saved in your secure profile for instant size calculations across online fashion stores.",
+    "dataRightsTitle": "Data Rights & Portability",
+    "dataRightsDesc": "Export a full copy of your data or permanently delete your account anytime under personal data protection guidelines.",
+    "downloadDataBtn": "Download My Data (JSON)",
+    "deleteAccountBtn": "Delete My Account",
+    "deleteModalTitle": "Permanently Delete Account?",
+    "deleteModalDesc": "This action cannot be undone. All your body measurements, saved sizes, and recommendations will be permanently purged.",
+    "keepAnonymousFeedbackCheckbox": "Keep my anonymous sizing ratings to help other shoppers (your identity and measurements will be completely erased)",
+    "confirmDeleteBtn": "Yes, Permanently Delete",
+    "withdrawConsentConfirm": "Withdrawing consent will delete your stored body measurements and clear all body snapshots from previous feedback. Continue?",
+    "consentWithdrawnSuccess": "Measurement storage consent withdrawn. All stored measurements deleted.",
+    "consentGrantedSuccess": "Measurement storage consent enabled.",
+    "exportSuccess": "Data export downloaded successfully.",
+    "accountDeletedSuccess": "Your account and personal data have been permanently deleted."
+  },
+  "try": {
+    "title": "Universal Size Finder",
+    "subtitle": "Select any store and product to find your perfect size.",
+    "selectRetailer": "Select Retailer",
+    "selectProduct": "Select Product",
+    "searchProductPlaceholder": "Search by product name...",
+    "findSizeBtn": "Find My Size",
+    "guestNotice": "Shopping as a guest? Enter your chest measurement below for an instant recommendation, or log in to use your saved profile.",
+    "demoBadge": "Demo data",
+    "unverifiedBadge": "Unverified brand size chart",
+    "confidence": "Confidence",
+    "recommendedSize": "Recommended Size",
+    "alternative": "Alternative Size",
+    "whySection": "Why this size?",
+    "bodyLabel": "Your Body",
+    "garmentLabel": "Garment",
+    "easeLabel": "Ease",
+    "targetBand": "Target Band",
+    "verdict": {
+      "too_tight": "Too tight",
+      "snug": "Snug",
+      "good": "Good fit",
+      "roomy": "Roomy",
+      "too_loose": "Too loose"
+    },
+    "saveSizeBtn": "Save this size",
+    "savedSizeSuccess": "Size saved to your wishlist!",
+    "goToStoreBtn": "Buy on Retailer Store"
+  },
+  "saved": {
+    "title": "Saved Products & Sizes",
+    "subtitle": "Keep track of items you plan to purchase",
+    "empty": "No saved items yet. Use the Size Finder to save recommendations!",
+    "buyPrompt": "Did you purchase this item?",
+    "boughtBtn": "Yes, I bought this",
+    "feedbackBtn": "Leave Fit Feedback",
+    "dismissBtn": "Dismiss"
+  },
+  "feedback": {
+    "title": "Post-Purchase Fit Feedback",
+    "subtitle": "Help verify sizing accuracy for other shoppers",
+    "sizeBought": "Size Purchased",
+    "fitResult": "How did it fit in reality?",
+    "results": {
+      "too_tight": "Too tight",
+      "slightly_tight": "Slightly tight",
+      "perfect": "Perfect fit",
+      "slightly_loose": "Slightly loose",
+      "too_loose": "Too loose"
+    },
+    "problemArea": "Problem Area (if any)",
+    "problemAreas": {
+      "none": "None",
+      "chest": "Chest / Bust",
+      "waist": "Waist",
+      "hip": "Hips",
+      "shoulder": "Shoulders",
+      "sleeve": "Sleeve",
+      "length": "Length"
+    },
+    "wasReturned": "Did you return or exchange this item?",
+    "note": "Additional comments (optional)",
+    "submitBtn": "Submit Feedback",
+    "success": "Thank you! Your feedback helps calibrate sizing accuracy."
+  },
+  "privacy": {
+    "title": "Privacy & Data Protection",
+    "subtitle": "Your body data belongs to you. Period.",
+    "legalNotice": "Note: This privacy policy draft is pending formal legal counsel review.",
+    "sections": {
+      "whatWeCollect": "What we collect",
+      "whatWeCollectBody": "We collect only the measurements and category fit preferences you explicitly provide.",
+      "howWeUse": "How your data is used",
+      "howWeUseBody": "Your measurements are strictly compared against garment size charts to calculate recommendations. We never sell, rent, or monetize your personal measurements.",
+      "rights": "Your rights",
+      "rightsBody": "You have the right to inspect, download (data portability), and permanently wipe your account and measurements at any moment."
+    },
+    "downloadBtn": "Download My Data (JSON)",
+    "deleteAccountBtn": "Delete My Account & Measurements",
+    "confirmModal": {
+      "title": "Permanently Delete Account?",
+      "text": "This action cannot be undone. All your body measurements, saved sizes, and recommendations will be permanently removed from our databases.",
+      "confirmBtn": "Yes, delete everything",
+      "cancelBtn": "Cancel"
+    }
+  },
+  "common": {
+    "cm": "cm",
+    "in": "in",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "optional": "Optional",
+    "required": "Required",
+    "fitted": "Fitted",
+    "regular": "Regular",
+    "loose": "Loose",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  }
+}
