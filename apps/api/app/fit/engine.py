@@ -121,6 +121,24 @@ def compute_fit_recommendation(
             no_good_fit=True,
         )
 
+    # Anthropometric estimation from height: If user provided height alongside primary
+    # measurements (chest/waist/hip), estimate secondary dimensions if missing to avoid
+    # unfair confidence penalties and provide informed sizing.
+    if has_primary_measurements and body.height_cm is not None and float(body.height_cm) >= 100.0:
+        h = float(body.height_cm)
+        if "shoulder" not in body_map:
+            chest_offset = max(0.0, (body_map.get("chest", 96.0) - 86.0) * 0.08)
+            body_map["shoulder"] = round(h * 0.245 + chest_offset, 1)
+        if "sleeve" not in body_map and category in {"shirt", "kurta"}:
+            body_map["sleeve"] = round(h * 0.365, 1)
+        if "inseam" not in body_map and category in {"trouser", "jeans"}:
+            body_map["inseam"] = round(h * 0.455, 1)
+        if "length" not in body_map:
+            if category == "kurta":
+                body_map["length"] = round(h * 0.585, 1)
+            elif category in {"shirt", "tshirt_top"}:
+                body_map["length"] = round(h * 0.415, 1)
+
     # Dimension definitions and weights for this category
     dim_weights = CATEGORY_DIMENSION_WEIGHTS.get(category, {})
 

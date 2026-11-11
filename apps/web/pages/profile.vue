@@ -145,12 +145,22 @@
               </p>
             </div>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-purple-400 px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full">
-            Active: {{ profile.preferred_unit.toUpperCase() }}
-          </span>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              @click="autoEstimateProportions"
+              class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm"
+            >
+              <span>✨</span>
+              <span class="hidden sm:inline">Auto-Estimate</span> from Height
+            </button>
+            <span class="text-xs font-bold uppercase tracking-wider text-purple-400 px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full">
+              Active: {{ profile.preferred_unit.toUpperCase() }}
+            </span>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
           <MeasurementInput
             v-model="measurements.chest"
             field-key="chest"
@@ -158,6 +168,23 @@
             :unit="profile.preferred_unit"
             :tip="$t('measurements.tips.chest')"
             required
+          />
+
+          <MeasurementInput
+            v-model="profile.height"
+            field-key="height"
+            :label="$t('measurements.height')"
+            :unit="profile.preferred_unit"
+            :tip="$t('measurements.tips.height')"
+            required
+          />
+
+          <MeasurementInput
+            v-model="measurements.shoulder"
+            field-key="shoulder"
+            :label="$t('measurements.shoulder')"
+            :unit="profile.preferred_unit"
+            :tip="$t('measurements.tips.shoulder')"
           />
 
           <MeasurementInput
@@ -174,14 +201,6 @@
             :label="$t('measurements.hip')"
             :unit="profile.preferred_unit"
             :tip="$t('measurements.tips.hip')"
-          />
-
-          <MeasurementInput
-            v-model="measurements.shoulder"
-            field-key="shoulder"
-            :label="$t('measurements.shoulder')"
-            :unit="profile.preferred_unit"
-            :tip="$t('measurements.tips.shoulder')"
           />
 
           <MeasurementInput
@@ -442,6 +461,7 @@ const profile = ref({
   display_name: '',
   preferred_unit: 'cm' as 'cm' | 'in',
   gender_category: 'womens',
+  height: null as number | null,
 })
 
 const measurements = ref<Record<string, number | null>>({
@@ -477,9 +497,10 @@ const completenessPercentage = computed(() => {
   let score = 0
   if (profile.value.display_name && profile.value.display_name.trim().length > 0) score += 10
   if (profile.value.gender_category) score += 10
-  if (measurements.value.chest && measurements.value.chest > 0) score += 25
-  if (measurements.value.waist && measurements.value.waist > 0) score += 20
-  if (measurements.value.hip && measurements.value.hip > 0) score += 20
+  if (measurements.value.chest && measurements.value.chest > 0) score += 20
+  if (profile.value.height && profile.value.height > 0) score += 15
+  if (measurements.value.waist && measurements.value.waist > 0) score += 15
+  if (measurements.value.hip && measurements.value.hip > 0) score += 15
   if (measurements.value.shoulder && measurements.value.shoulder > 0) score += 15
   return Math.min(100, score)
 })
@@ -495,6 +516,9 @@ onMounted(async () => {
     profile.value.display_name = prof.display_name || ''
     profile.value.preferred_unit = prof.preferred_unit || 'cm'
     profile.value.gender_category = prof.gender_category || 'womens'
+    if (prof.height_cm) {
+      profile.value.height = fromStorageCm(prof.height_cm, profile.value.preferred_unit)
+    }
   }
 
   // 2. Measurements
@@ -599,6 +623,9 @@ async function executeAccountDeletion() {
 
 function onUnitChange() {
   const isInch = profile.value.preferred_unit === 'in'
+  if (profile.value.height != null) {
+    profile.value.height = isInch ? cmToInches(profile.value.height) : inchesToCm(profile.value.height)
+  }
   for (const key of Object.keys(measurements.value)) {
     const val = measurements.value[key]
     if (val != null) {
@@ -607,10 +634,36 @@ function onUnitChange() {
   }
 }
 
+function autoEstimateProportions() {
+  const h = profile.value.height
+  if (!h || h <= 0) {
+    toast.info('Please enter your Height first')
+    return
+  }
+  const u = profile.value.preferred_unit
+  const heightCm = toStorageCm(h, u) || 175
+  const chestCm = toStorageCm(measurements.value.chest || 95, u) || 95
+
+  const chestOffset = Math.max(0, (chestCm - 86) * 0.08)
+  const estShoulderCm = Math.round((heightCm * 0.245 + chestOffset) * 10) / 10
+  const estSleeveCm = Math.round((heightCm * 0.365) * 10) / 10
+  const estInseamCm = Math.round((heightCm * 0.455) * 10) / 10
+  const estKameezCm = Math.round((heightCm * 0.585) * 10) / 10
+
+  measurements.value.shoulder = fromStorageCm(estShoulderCm, u)
+  measurements.value.sleeve = fromStorageCm(estSleeveCm, u)
+  measurements.value.inseam = fromStorageCm(estInseamCm, u)
+  measurements.value.kameez_length = fromStorageCm(estKameezCm, u)
+
+  toast.success('Shoulders, sleeves, and lengths estimated from your height!')
+}
+
 async function saveProfile() {
   if (!user.value) return
   isSaving.value = true
   const uid = user.value.id
+  const unit = profile.value.preferred_unit
+  const toCm = (val: number | null) => (val != null ? toStorageCm(val, unit) : null)
 
   try {
     // 1. Profile
@@ -619,12 +672,10 @@ async function saveProfile() {
       display_name: profile.value.display_name,
       preferred_unit: profile.value.preferred_unit,
       gender_category: profile.value.gender_category,
+      height_cm: toCm(profile.value.height),
     }, { onConflict: 'user_id' })
 
     // 2. Measurements in cm
-    const unit = profile.value.preferred_unit
-    const toCm = (val: number | null) => (val != null ? toStorageCm(val, unit) : null)
-
     await supabase.from('body_measurements').upsert({
       user_id: uid,
       chest_cm: toCm(measurements.value.chest),
@@ -643,6 +694,26 @@ async function saveProfile() {
       fit,
     }))
     await supabase.from('fit_preferences').upsert(rows, { onConflict: 'user_id,category' })
+
+    // 4. Update local storage for instant 1-click sizing across all stores
+    if (import.meta.client) {
+      try {
+        localStorage.setItem('fitsense_user_profile', JSON.stringify({
+          chest: measurements.value.chest,
+          waist: measurements.value.waist,
+          hip: measurements.value.hip,
+          shoulder: measurements.value.shoulder,
+          sleeve: measurements.value.sleeve,
+          inseam: measurements.value.inseam,
+          kameez_length: measurements.value.kameez_length,
+          height: profile.value.height,
+          unit: profile.value.preferred_unit,
+          gender_category: profile.value.gender_category,
+        }))
+      } catch (e) {
+        console.warn('Failed to save to localStorage', e)
+      }
+    }
 
     toast.success(t('profile.savedSuccess') || 'Profile and measurements saved successfully!')
   } catch (err: any) {

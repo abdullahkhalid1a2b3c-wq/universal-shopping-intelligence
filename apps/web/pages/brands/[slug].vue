@@ -47,12 +47,17 @@
 
         <!-- Action CTAs -->
         <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+          <div v-if="hasProfile" class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center gap-1.5">
+            <span>✓</span>
+            <span>Profile Ready: {{ profileState.chest }}{{ profileState.unit }} chest, {{ profileState.shoulder ? `${profileState.shoulder}${profileState.unit} shldr` : `${profileState.height}${profileState.unit} ht` }}</span>
+          </div>
+
           <NuxtLink
-            :to="localePath(`/try?retailer=${brand.slug}`)"
+            :to="localePath(`/try?retailer=${brand.slug}${hasProfile ? '&autocalculate=true' : ''}`)"
             class="px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm text-center shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2"
           >
-            <span>🎯</span>
-            <span>Find My Size in {{ brand.name }}</span>
+            <span>{{ hasProfile ? '⚡' : '🎯' }}</span>
+            <span>{{ hasProfile ? `1-Click Size in ${brand.name}` : `Find My Size in ${brand.name}` }}</span>
           </NuxtLink>
           <button
             type="button"
@@ -188,23 +193,24 @@
               </table>
             </div>
 
-            <!-- Find Size CTA Banner -->
-            <div class="p-6 rounded-2xl bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/40 dark:to-purple-950/40 border border-indigo-100 dark:border-indigo-900/40 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div class="space-y-1 text-center sm:text-left">
-                <p class="font-bold text-sm text-indigo-950 dark:text-indigo-200">
-                  Ready to test your measurements?
-                </p>
-                <p class="text-xs text-indigo-800/80 dark:text-indigo-300/80">
-                  FitSense matches your saved profile against {{ brand.name }} sizing charts.
-                </p>
+              <!-- Find Size CTA Banner -->
+              <div class="p-6 rounded-2xl bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/40 dark:to-purple-950/40 border border-indigo-100 dark:border-indigo-900/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="space-y-1 text-center sm:text-left">
+                  <p class="font-bold text-sm text-indigo-950 dark:text-indigo-200">
+                    {{ hasProfile ? `Find your guaranteed size in ${brand.name}` : 'Ready to test your measurements?' }}
+                  </p>
+                  <p class="text-xs text-indigo-800/80 dark:text-indigo-300/80">
+                    {{ hasProfile ? `FitSense automatically matches your active profile against ${brand.name}'s verified size charts with 1 click.` : `FitSense matches your body measurements against ${brand.name} sizing charts.` }}
+                  </p>
+                </div>
+                <NuxtLink
+                  :to="localePath(`/try?retailer=${brand.slug}${hasProfile ? '&autocalculate=true' : ''}`)"
+                  class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition shrink-0 flex items-center gap-1.5"
+                >
+                  <span>{{ hasProfile ? '⚡' : '🎯' }}</span>
+                  <span>{{ hasProfile ? `1-Click Size in ${brand.name}` : 'Find My Size &rarr;' }}</span>
+                </NuxtLink>
               </div>
-              <NuxtLink
-                :to="localePath(`/try?retailer=${brand.slug}`)"
-                class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition shrink-0"
-              >
-                Find My Size &rarr;
-              </NuxtLink>
-            </div>
           </div>
         </div>
       </div>
@@ -227,12 +233,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useFitProfile } from '~/composables/useFitProfile'
 
 const route = useRoute()
 const config = useRuntimeConfig()
 const apiBase = config.public.apiBaseUrl || 'http://localhost:8000'
 const localePath = useLocalePath()
+
+const { profileState, hasProfile, loadProfile } = useFitProfile()
 
 const slug = computed(() => String(route.params.slug || ''))
 const brand = ref<any | null>(null)
@@ -245,6 +254,9 @@ const openAssistantForBrand = () => {
 }
 
 onMounted(async () => {
+  // Load customer's universal profile for instant 1-click recommendations
+  await loadProfile()
+
   try {
     const res = await $fetch<any>(`${apiBase}/v1/retailers/${slug.value}`)
     brand.value = res

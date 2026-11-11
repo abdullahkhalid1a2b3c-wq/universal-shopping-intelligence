@@ -50,7 +50,7 @@ def test_optional_providers_do_not_fail_when_unconfigured(monkeypatch):
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
     monkeypatch.delenv("XAI_API_KEY", raising=False)
 
-    test_settings = Settings()
+    test_settings = Settings(_env_file=None)
     status = test_settings.get_ai_provider_status()
     assert status["gemini"] is False
     assert status["xai"] is False

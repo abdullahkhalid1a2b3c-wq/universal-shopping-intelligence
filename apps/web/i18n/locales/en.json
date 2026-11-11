@@ -111,7 +111,8 @@
       "shoulder": "Measure from the tip of one shoulder across your upper back to the other tip.",
       "sleeve": "Measure from shoulder point down to your wrist bone.",
       "inseam": "Measure along the inside of your leg from the crotch to your ankle.",
-      "kameez_length": "Measure from the shoulder collar seam straight down to your desired hemline."
+      "kameez_length": "Measure from the shoulder collar seam straight down to your desired hemline.",
+      "height": "Stand straight against a wall without shoes and measure from floor to crown of your head."
     }
   },
   "profile": {

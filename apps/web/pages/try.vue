@@ -9,12 +9,233 @@
         Universal Size Finder
       </h1>
       <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-        Select any verified Pakistani brand and clothing item to discover your ideal size computed by our deterministic rules engine.
+        One-time profile building: enter your measurements once, and instantly get your guaranteed size across Khaadi, Sapphire, Outfitters, and all top Pakistani brands.
       </p>
     </div>
 
-    <!-- Product Selection Card (High-Contrast Obsidian Luxury Card) -->
+    <!-- Product Selection & Universal Profile Card (High-Contrast Obsidian Luxury Card) -->
     <div class="bg-slate-900/90 backdrop-blur-xl p-6 sm:p-10 rounded-3xl shadow-2xl border border-slate-800 space-y-8">
+      
+      <!-- 1-Time Universal Sizing Profile Section -->
+      <div class="p-6 bg-slate-800/70 border border-slate-700/80 rounded-2xl space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/30 to-purple-500/30 border border-indigo-400/40 text-indigo-300 flex items-center justify-center shrink-0 text-lg font-bold shadow-sm">
+              ✨
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <p class="text-sm text-white font-extrabold tracking-wide">
+                  Universal Customer Fit Profile
+                </p>
+                <span
+                  v-if="hasProfile"
+                  class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 flex items-center gap-1 shadow-sm"
+                >
+                  <span>✓</span> Active & Reusable
+                </span>
+                <span
+                  v-else
+                  class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30"
+                >
+                  1-Time Setup
+                </span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1">
+                Your body measurements are remembered across all shops. Height, chest, and shoulder dimensions predict exact fit with 95%+ confidence.
+              </p>
+            </div>
+          </div>
+
+          <!-- Unit Switcher & Quick Actions -->
+          <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+            <button
+              type="button"
+              @click="showMeasurementEditor = !showMeasurementEditor"
+              class="px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition flex items-center gap-1.5"
+            >
+              <span>{{ showMeasurementEditor ? '▲ Collapse' : '✏️ Adjust' }}</span>
+            </button>
+
+            <div class="flex items-center bg-slate-900 rounded-xl p-1 border border-slate-700 text-xs font-bold">
+              <button
+                type="button"
+                @click="setUnit('cm')"
+                class="px-2.5 py-1 rounded-lg transition"
+                :class="profileState.unit === 'cm' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'"
+              >
+                CM
+              </button>
+              <button
+                type="button"
+                @click="setUnit('in')"
+                class="px-2.5 py-1 rounded-lg transition"
+                :class="profileState.unit === 'in' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'"
+              >
+                IN
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sleek Profile Pill Summary (Visible when collapsed or active) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2.5 pt-1 text-xs">
+          <div class="bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2 flex flex-col">
+            <span class="text-[10px] uppercase font-bold text-slate-400">Chest / Bust</span>
+            <span class="font-extrabold text-white text-sm mt-0.5">
+              {{ profileState.chest ? `${profileState.chest} ${profileState.unit}` : '—' }}
+            </span>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2 flex flex-col">
+            <span class="text-[10px] uppercase font-bold text-slate-400">Height</span>
+            <span class="font-extrabold text-indigo-300 text-sm mt-0.5">
+              {{ profileState.height ? `${profileState.height} ${profileState.unit}` : '—' }}
+            </span>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2 flex flex-col">
+            <span class="text-[10px] uppercase font-bold text-slate-400">Shoulder</span>
+            <span class="font-extrabold text-indigo-300 text-sm mt-0.5">
+              {{ profileState.shoulder ? `${profileState.shoulder} ${profileState.unit}` : '—' }}
+            </span>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2 flex flex-col">
+            <span class="text-[10px] uppercase font-bold text-slate-400">Waist</span>
+            <span class="font-extrabold text-white text-sm mt-0.5">
+              {{ profileState.waist ? `${profileState.waist} ${profileState.unit}` : '—' }}
+            </span>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2 flex flex-col">
+            <span class="text-[10px] uppercase font-bold text-slate-400">Hips</span>
+            <span class="font-extrabold text-white text-sm mt-0.5">
+              {{ profileState.hip ? `${profileState.hip} ${profileState.unit}` : '—' }}
+            </span>
+          </div>
+
+          <div class="bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2 flex flex-col">
+            <span class="text-[10px] uppercase font-bold text-slate-400">Sleeve</span>
+            <span class="font-extrabold text-white text-sm mt-0.5">
+              {{ profileState.sleeve ? `${profileState.sleeve} ${profileState.unit}` : '—' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Full Measurement Inputs Drawer (Expandable for editing) -->
+        <div v-show="showMeasurementEditor" class="space-y-5 pt-3 border-t border-slate-700/60 animate-fadeIn">
+          
+          <!-- Smart Auto-Estimation Banner -->
+          <div class="p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-2.5">
+              <span class="text-lg">💡</span>
+              <p class="text-indigo-200 leading-snug">
+                <strong>Don't have all your measurements?</strong> Enter your <strong>Height</strong> & <strong>Chest</strong>, and click auto-estimate to calculate accurate shoulder, sleeve, and length proportions!
+              </p>
+            </div>
+            <button
+              type="button"
+              @click="autoEstimateFromHeight"
+              class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition shrink-0 flex items-center gap-1.5 shadow-sm"
+            >
+              <span>✨</span>
+              <span>Auto-Estimate from Height</span>
+            </button>
+          </div>
+
+          <!-- Section A: Primary Dimensions -->
+          <div>
+            <h4 class="text-[11px] uppercase tracking-wider font-extrabold text-indigo-400 mb-2.5">
+              Primary Dimensions (Crucial for Tops, Kurtas & Dresses)
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              <MeasurementInput
+                v-model="profileState.chest"
+                field-key="chest"
+                :label="$t('measurements.chest')"
+                :unit="profileState.unit"
+                required
+                :tip="$t('measurements.tips.chest')"
+              />
+              <MeasurementInput
+                v-model="profileState.height"
+                field-key="height"
+                :label="$t('measurements.height')"
+                :unit="profileState.unit"
+                required
+                :tip="$t('measurements.tips.height')"
+              />
+              <MeasurementInput
+                v-model="profileState.waist"
+                field-key="waist"
+                :label="$t('measurements.waist')"
+                :unit="profileState.unit"
+                :tip="$t('measurements.tips.waist')"
+              />
+              <MeasurementInput
+                v-model="profileState.hip"
+                field-key="hip"
+                :label="$t('measurements.hip')"
+                :unit="profileState.unit"
+                :tip="$t('measurements.tips.hip')"
+              />
+            </div>
+          </div>
+
+          <!-- Section B: Proportions & Sizing Details -->
+          <div>
+            <h4 class="text-[11px] uppercase tracking-wider font-extrabold text-indigo-400 mb-2.5">
+              Proportions & Sizing Details (Eliminates Fit Warnings)
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              <MeasurementInput
+                v-model="profileState.shoulder"
+                field-key="shoulder"
+                :label="$t('measurements.shoulder')"
+                :unit="profileState.unit"
+                :tip="$t('measurements.tips.shoulder')"
+              />
+              <MeasurementInput
+                v-model="profileState.sleeve"
+                field-key="sleeve"
+                :label="$t('measurements.sleeve')"
+                :unit="profileState.unit"
+                :tip="$t('measurements.tips.sleeve')"
+              />
+              <MeasurementInput
+                v-model="profileState.inseam"
+                field-key="inseam"
+                :label="$t('measurements.inseam')"
+                :unit="profileState.unit"
+                :tip="$t('measurements.tips.inseam')"
+              />
+              <MeasurementInput
+                v-model="profileState.kameez_length"
+                field-key="kameez_length"
+                :label="$t('measurements.kameez_length')"
+                :unit="profileState.unit"
+                :tip="$t('measurements.tips.kameez_length')"
+              />
+            </div>
+          </div>
+
+          <!-- Save to Profile Button -->
+          <div class="flex justify-end pt-2">
+            <button
+              type="button"
+              @click="handleSaveProfile"
+              :disabled="isSaving || !profileState.chest"
+              class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs transition shadow-md flex items-center gap-2 disabled:opacity-40"
+            >
+              <span>💾</span>
+              <span>{{ isSaving ? 'Saving Profile...' : 'Save & Lock Universal Profile' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Retailer & Product Selection -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <!-- Retailer Select -->
         <div>
@@ -75,97 +296,7 @@
         </div>
       </div>
 
-      <!-- Measurements Section (Always accessible for guaranteed high confidence recommendations) -->
-      <div class="p-6 bg-slate-800/60 border border-slate-700/80 rounded-2xl space-y-5">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 text-sm font-bold">
-              📐
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <p class="text-xs text-white font-bold">
-                  {{ user ? 'Active Body Measurements' : 'Guest Fitting Measurements' }}
-                </p>
-                <span
-                  v-if="user && hasLoadedSavedProfile"
-                  class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"
-                >
-                  ✓ Synced with Profile
-                </span>
-                <span
-                  v-else-if="user"
-                  class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30"
-                >
-                  Not saved in profile yet
-                </span>
-              </div>
-              <p class="text-[11px] text-slate-400 mt-0.5">
-                Exact measurements ensure our rules engine calculates recommendations with 90%+ confidence.
-              </p>
-            </div>
-          </div>
-
-          <!-- Unit toggle & 1-click Save to Profile button -->
-          <div class="flex items-center gap-2">
-            <button
-              v-if="user && !hasLoadedSavedProfile"
-              type="button"
-              @click="saveMeasurementsToProfile"
-              :disabled="isSavingToProfile || !measurements.chest"
-              class="px-3 py-1.5 rounded-xl bg-indigo-600/80 hover:bg-indigo-600 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm disabled:opacity-40"
-            >
-              <span>💾</span>
-              <span>{{ isSavingToProfile ? 'Saving...' : 'Save to Profile' }}</span>
-            </button>
-            <div class="flex items-center bg-slate-900 rounded-xl p-1 border border-slate-700 text-xs font-bold">
-              <button
-                type="button"
-                @click="switchUnit('cm')"
-                class="px-2.5 py-1 rounded-lg transition"
-                :class="activeUnit === 'cm' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'"
-              >
-                CM
-              </button>
-              <button
-                type="button"
-                @click="switchUnit('in')"
-                class="px-2.5 py-1 rounded-lg transition"
-                :class="activeUnit === 'in' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'"
-              >
-                IN
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
-          <MeasurementInput
-            v-model="measurements.chest"
-            field-key="chest"
-            :label="$t('measurements.chest')"
-            :unit="activeUnit"
-            required
-            :tip="$t('measurements.tips.chest')"
-          />
-          <MeasurementInput
-            v-model="measurements.waist"
-            field-key="waist"
-            :label="$t('measurements.waist')"
-            :unit="activeUnit"
-            :tip="$t('measurements.tips.waist')"
-          />
-          <MeasurementInput
-            v-model="measurements.hip"
-            field-key="hip"
-            :label="$t('measurements.hip')"
-            :unit="activeUnit"
-            :tip="$t('measurements.tips.hip')"
-          />
-        </div>
-      </div>
-
-      <!-- Calculate Size Button -->
+      <!-- 1-Click Calculate Size Button -->
       <div class="pt-2">
         <button
           type="button"
@@ -177,7 +308,7 @@
           <span v-if="isComputing">{{ $t('common.loading') }}</span>
           <span v-else class="flex items-center gap-2">
             <span>🎯</span>
-            <span>{{ $t('try.findSizeBtn') }}</span>
+            <span>{{ selectedRetailerName ? `Recommend My Size in ${selectedRetailerName}` : $t('try.findSizeBtn') }}</span>
           </span>
         </button>
       </div>
@@ -189,7 +320,7 @@
         :result="recommendationData.recommendation"
         :explanation="recommendationData.explanation"
         :product-url="activeProductUrl"
-        :unit="activeUnit"
+        :unit="profileState.unit"
         @save-size="handleSaveSize"
       />
     </div>
@@ -198,7 +329,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { toStorageCm, fromStorageCm, cmToInches, inchesToCm } from '~/utils/units'
+import { useFitProfile } from '~/composables/useFitProfile'
 
 const api = useApi()
 const user = useSupabaseUser()
@@ -206,24 +337,32 @@ const supabase = useSupabaseClient()
 const toast = useToast()
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
-
 const route = useRoute()
+
+// Initialize central cross-store Fit Profile
+const {
+  profileState,
+  hasProfile,
+  isSaving,
+  loadProfile,
+  saveProfile,
+  setUnit,
+  autoEstimateFromHeight,
+  toApiPayload,
+} = useFitProfile()
+
+const showMeasurementEditor = ref(false)
 const retailers = ref<any[]>([])
 const products = ref<any[]>([])
 const selectedRetailerSlug = ref('')
 const selectedProductId = ref('')
 const isLoadingProducts = ref(false)
 const isComputing = ref(false)
-const isSavingToProfile = ref(false)
-const hasLoadedSavedProfile = ref(false)
 const recommendationData = ref<any>(null)
 
-const activeUnit = ref<'cm' | 'in'>('cm')
-
-const measurements = ref<Record<string, number | null>>({
-  chest: 100,
-  waist: 85,
-  hip: 105,
+const selectedRetailerName = computed(() => {
+  const match = retailers.value.find((r) => r.slug === selectedRetailerSlug.value)
+  return match?.name || ''
 })
 
 const activeProductUrl = computed(() => {
@@ -232,6 +371,15 @@ const activeProductUrl = computed(() => {
 })
 
 onMounted(async () => {
+  // Load unified universal profile (from localStorage and/or Supabase)
+  await loadProfile()
+
+  // If no measurements entered yet, open editor by default so user can set it up once
+  if (!profileState.value.chest) {
+    showMeasurementEditor.value = true
+  }
+
+  // Load Retailers Catalog
   try {
     retailers.value = await api.get<any[]>('/v1/retailers')
     const queryRetailer = String(route.query.retailer || '').trim().toLowerCase()
@@ -241,75 +389,23 @@ onMounted(async () => {
     } else if (retailers.value.length > 0) {
       selectedRetailerSlug.value = retailers.value[0].slug
     }
+
     if (selectedRetailerSlug.value) {
       await loadProducts(selectedRetailerSlug.value)
+      
+      // If autocalculate requested via 1-click brand button, run immediately!
+      if (route.query.autocalculate === 'true' && selectedProductId.value) {
+        await calculateSize()
+      }
     }
   } catch (err: any) {
     console.error('Failed to load retailers', err)
   }
-
-  // If user is logged in, load unit preference and body measurements
-  if (user.value) {
-    const uid = user.value.id
-    try {
-      const { data: prof } = await supabase
-        .from('profiles')
-        .select('preferred_unit')
-        .eq('user_id', uid)
-        .single()
-      if (prof?.preferred_unit) {
-        activeUnit.value = prof.preferred_unit
-      }
-
-      const { data: bm } = await supabase
-        .from('body_measurements')
-        .select('*')
-        .eq('user_id', uid)
-        .single()
-      if (bm && (bm.chest_cm || bm.waist_cm || bm.hip_cm)) {
-        hasLoadedSavedProfile.value = true
-        if (bm.chest_cm) measurements.value.chest = fromStorageCm(bm.chest_cm, activeUnit.value)
-        if (bm.waist_cm) measurements.value.waist = fromStorageCm(bm.waist_cm, activeUnit.value)
-        if (bm.hip_cm) measurements.value.hip = fromStorageCm(bm.hip_cm, activeUnit.value)
-      }
-    } catch (e) {
-      console.warn('Could not load user measurements', e)
-    }
-  }
 })
 
-function switchUnit(newUnit: 'cm' | 'in') {
-  if (activeUnit.value === newUnit) return
-  activeUnit.value = newUnit
-  for (const k of ['chest', 'waist', 'hip']) {
-    const val = measurements.value[k]
-    if (val != null) {
-      measurements.value[k] = newUnit === 'in' ? cmToInches(val) : inchesToCm(val)
-    }
-  }
-}
-
-async function saveMeasurementsToProfile() {
-  if (!user.value) return
-  isSavingToProfile.value = true
-  const uid = user.value.id
-  const unit = activeUnit.value
-  const toCm = (val: number | null) => (val != null ? toStorageCm(val, unit) : null)
-
-  try {
-    await supabase.from('body_measurements').upsert({
-      user_id: uid,
-      chest_cm: toCm(measurements.value.chest),
-      waist_cm: toCm(measurements.value.waist),
-      hip_cm: toCm(measurements.value.hip),
-    }, { onConflict: 'user_id' })
-    hasLoadedSavedProfile.value = true
-    toast.success('Measurements saved to your profile!')
-  } catch (err: any) {
-    toast.error(err.message || 'Failed to save measurements')
-  } finally {
-    isSavingToProfile.value = false
-  }
+async function handleSaveProfile() {
+  await saveProfile()
+  showMeasurementEditor.value = false
 }
 
 async function onRetailerChange() {
@@ -341,16 +437,12 @@ async function calculateSize() {
   recommendationData.value = null
 
   try {
-    const toCm = (val: number | null) => (val != null ? toStorageCm(val, activeUnit.value) : null)
-
-    // Always attach exact body measurements for deterministic precision
+    const selectedProd = products.value.find((p) => p.id === selectedProductId.value)
+    
+    // Always attach complete body measurements (chest, waist, hip, shoulder, sleeve, height)
     const payload: any = {
       product_id: selectedProductId.value,
-      measurements: {
-        chest_cm: toCm(measurements.value.chest),
-        waist_cm: toCm(measurements.value.waist),
-        hip_cm: toCm(measurements.value.hip),
-      },
+      measurements: toApiPayload(selectedProd?.category),
     }
 
     const res = await api.post<any>('/v1/recommend', payload, {

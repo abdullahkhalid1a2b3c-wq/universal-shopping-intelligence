@@ -46,6 +46,11 @@
           <g v-else-if="fieldKey === 'inseam'" stroke="#e11d48" stroke-width="2.5">
             <line x1="30" y1="42" x2="30" y2="60" />
           </g>
+          <g v-else-if="fieldKey === 'height'" stroke="#e11d48" stroke-width="2.5">
+            <line x1="14" y1="4" x2="14" y2="60" />
+            <line x1="10" y1="4" x2="18" y2="4" />
+            <line x1="10" y1="60" x2="18" y2="60" />
+          </g>
           <g v-else stroke="#e11d48" stroke-width="2.5">
             <line x1="20" y1="20" x2="20" y2="52" />
           </g>

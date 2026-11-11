@@ -80,6 +80,14 @@ async def _execute_recommendation_computation(
                 )
                 if bm_res.data:
                     bm = bm_res.data[0]
+                    height_cm = None
+                    try:
+                        p_res = client.table("profiles").select("height_cm").eq("user_id", user_id).limit(1).execute()
+                        if p_res.data and p_res.data[0].get("height_cm"):
+                            height_cm = p_res.data[0].get("height_cm")
+                    except Exception:
+                        pass
+
                     body_input = BodyMeasurementsInput(
                         chest_cm=bm.get("chest_cm"),
                         waist_cm=bm.get("waist_cm"),
@@ -90,6 +98,7 @@ async def _execute_recommendation_computation(
                         thigh_cm=bm.get("thigh_cm"),
                         torso_length_cm=bm.get("torso_length_cm"),
                         kameez_length_cm=bm.get("kameez_length_cm"),
+                        height_cm=height_cm,
                     )
             except Exception:
                 pass
