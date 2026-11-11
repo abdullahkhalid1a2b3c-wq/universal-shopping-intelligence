@@ -1,18 +1,18 @@
 <template>
   <div class="w-full">
     <div class="flex items-center justify-between mb-2">
-      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">
+      <span class="text-xs font-black uppercase tracking-wider text-indigo-400">
         Step {{ currentStep }} of {{ totalSteps }}
       </span>
-      <span class="text-xs font-semibold text-gray-500">
+      <span class="text-xs font-bold text-slate-300">
         {{ stepNames[currentStep - 1] }}
       </span>
     </div>
 
     <!-- Progress Bar Track -->
-    <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+    <div class="w-full h-2.5 bg-slate-900 border border-slate-700/80 rounded-full overflow-hidden p-0.5 shadow-inner">
       <div
-        class="h-full bg-indigo-600 rounded-full transition-all duration-300 ease-out"
+        class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-300 ease-out shadow-sm"
         :style="{ width: `${(currentStep / totalSteps) * 100}%` }"
       ></div>
     </div>
@@ -26,4 +26,3 @@ defineProps<{
   stepNames: string[]
 }>()
 </script>
-

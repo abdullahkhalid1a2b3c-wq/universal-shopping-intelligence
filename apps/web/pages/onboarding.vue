@@ -12,14 +12,14 @@
       ]"
     />
 
-    <div class="mt-8 bg-white p-6 sm:p-10 rounded-3xl shadow-xl border border-gray-100 space-y-8">
+    <div class="mt-8 bg-slate-900/90 backdrop-blur-2xl p-6 sm:p-10 rounded-3xl shadow-2xl border border-slate-800 space-y-8 text-white">
       <!-- ================= STEP 1: PREFERENCES ================= -->
       <div v-if="currentStep === 1" class="space-y-6">
         <div>
-          <h2 class="text-2xl font-black text-gray-900 tracking-tight">
+          <h2 class="text-2xl font-black text-white tracking-tight">
             {{ $t('onboarding.step1Title') }}
           </h2>
-          <p class="text-sm text-gray-500 mt-1">
+          <p class="text-sm text-slate-400 mt-1">
             {{ $t('onboarding.step1Subtitle') }}
           </p>
         </div>
@@ -27,7 +27,7 @@
         <div class="space-y-5">
           <!-- Preferred Language -->
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
               {{ $t('onboarding.preferredLanguage') }}
             </label>
             <div class="grid grid-cols-3 gap-3">
@@ -36,7 +36,7 @@
                 :key="l.code"
                 type="button"
                 class="py-3 px-3 text-sm font-semibold rounded-2xl border text-center transition"
-                :class="selectedLanguage === l.code ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-100' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'"
+                :class="selectedLanguage === l.code ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30' : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700'"
                 @click="setLanguage(l.code)"
               >
                 {{ l.name }}
@@ -46,14 +46,14 @@
 
           <!-- Preferred Unit -->
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
               {{ $t('onboarding.preferredUnit') }}
             </label>
             <div class="grid grid-cols-2 gap-3">
               <button
                 type="button"
                 class="py-3 px-4 text-sm font-semibold rounded-2xl border text-center transition"
-                :class="preferredUnit === 'cm' ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-100' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'"
+                :class="preferredUnit === 'cm' ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30' : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700'"
                 @click="preferredUnit = 'cm'"
               >
                 Centimetres (cm)
@@ -61,7 +61,7 @@
               <button
                 type="button"
                 class="py-3 px-4 text-sm font-semibold rounded-2xl border text-center transition"
-                :class="preferredUnit === 'in' ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-100' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'"
+                :class="preferredUnit === 'in' ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30' : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700'"
                 @click="preferredUnit = 'in'"
               >
                 Inches (in)
@@ -71,7 +71,7 @@
 
           <!-- Gender Category -->
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
               {{ $t('onboarding.genderCategory') }}
             </label>
             <div class="grid grid-cols-3 gap-3">
@@ -80,7 +80,7 @@
                 :key="g.value"
                 type="button"
                 class="py-3 px-2 text-xs sm:text-sm font-semibold rounded-2xl border text-center transition"
-                :class="genderCategory === g.value ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-100' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'"
+                :class="genderCategory === g.value ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30' : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700'"
                 @click="genderCategory = g.value"
               >
                 {{ $t(`onboarding.gender.${g.value}`) }}
@@ -93,29 +93,29 @@
       <!-- ================= STEP 2: PRIVACY CONSENT (MANDATORY) ================= -->
       <div v-else-if="currentStep === 2" class="space-y-6">
         <div>
-          <h2 class="text-2xl font-black text-gray-900 tracking-tight">
+          <h2 class="text-2xl font-black text-white tracking-tight">
             {{ $t('onboarding.step2Title') }}
           </h2>
-          <p class="text-sm text-gray-500 mt-1">
+          <p class="text-sm text-slate-400 mt-1">
             {{ $t('onboarding.step2Subtitle') }}
           </p>
         </div>
 
-        <div class="p-5 bg-indigo-50/70 border border-indigo-100 rounded-2xl space-y-3 text-xs sm:text-sm text-indigo-950">
+        <div class="p-5 bg-indigo-950/40 border border-indigo-900/60 rounded-2xl space-y-3 text-xs sm:text-sm text-indigo-200">
           <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
             <p>{{ $t('onboarding.consentBullet1') }}</p>
           </div>
           <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
             <p>{{ $t('onboarding.consentBullet2') }}</p>
           </div>
           <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
             </svg>
             <p>{{ $t('onboarding.consentBullet3') }}</p>
@@ -128,16 +128,16 @@
               v-model="hasGivenConsent"
               type="checkbox"
               required
-              class="w-5 h-5 rounded text-indigo-600 focus:ring-indigo-500 border-gray-300 mt-0.5"
+              class="w-5 h-5 rounded text-indigo-600 focus:ring-indigo-500 border-slate-700 bg-slate-800 mt-0.5"
             />
-            <span class="text-sm font-semibold text-gray-800">
+            <span class="text-sm font-semibold text-slate-200">
               {{ $t('onboarding.consentCheckbox') }}
             </span>
           </label>
         </div>
 
         <div class="text-xs">
-          <NuxtLink :to="localePath('/privacy')" target="_blank" class="text-indigo-600 hover:underline font-medium">
+          <NuxtLink :to="localePath('/privacy')" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-medium">
             {{ $t('onboarding.privacyLink') }} &rarr;
           </NuxtLink>
         </div>
@@ -147,10 +147,10 @@
       <div v-else-if="currentStep === 3" class="space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 class="text-2xl font-black text-gray-900 tracking-tight">
+            <h2 class="text-2xl font-black text-white tracking-tight">
               {{ $t('onboarding.step3Title') }}
             </h2>
-            <p class="text-sm text-gray-500 mt-1">
+            <p class="text-sm text-slate-400 mt-1">
               {{ $t('onboarding.step3Subtitle') }}
             </p>
           </div>
@@ -158,7 +158,7 @@
           <!-- Secondary Entry Option: Measure garment button -->
           <button
             type="button"
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition self-start"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-indigo-400 bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-800/80 rounded-xl transition self-start"
             @click="isGarmentModalOpen = true"
           >
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -169,14 +169,14 @@
         </div>
 
         <!-- Estimate Banner if applied from garment -->
-        <div v-if="appliedEstimateNotice" class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs font-semibold text-amber-900 flex items-center justify-between">
+        <div v-if="appliedEstimateNotice" class="p-3 bg-amber-950/40 border border-amber-800/60 rounded-xl text-xs font-semibold text-amber-200 flex items-center justify-between">
           <span>{{ $t('onboarding.estimateBadge') }}</span>
-          <button type="button" class="text-amber-700 hover:text-amber-900" @click="appliedEstimateNotice = false">&times;</button>
+          <button type="button" class="text-amber-400 hover:text-amber-200" @click="appliedEstimateNotice = false">&times;</button>
         </div>
 
         <!-- Required Fields -->
         <div class="space-y-4">
-          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Essential Measurements</h3>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400">Essential Measurements</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <MeasurementInput
               v-model="chestDisplay"
@@ -216,13 +216,13 @@
         </div>
 
         <!-- Optional Fields Toggle -->
-        <div class="border-t pt-4">
+        <div class="border-t border-slate-800 pt-4">
           <button
             type="button"
-            class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 focus:outline-none"
+            class="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 focus:outline-none"
             @click="showOptionalMeasurements = !showOptionalMeasurements"
           >
-            <span>{{ showOptionalMeasurements ? 'Hide additional measurements' : '+ Add sleeve, inseam, kameez length (optional)' }}</span>
+            <span>{{ showOptionalMeasurements ? '▲ Hide additional measurements' : '+ Add sleeve, inseam, kameez length (optional)' }}</span>
           </button>
 
           <div v-if="showOptionalMeasurements" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 animate-fadeIn">
@@ -256,10 +256,10 @@
       <!-- ================= STEP 4: FIT PREFERENCES ================= -->
       <div v-else-if="currentStep === 4" class="space-y-6">
         <div>
-          <h2 class="text-2xl font-black text-gray-900 tracking-tight">
+          <h2 class="text-2xl font-black text-white tracking-tight">
             {{ $t('onboarding.step4Title') }}
           </h2>
-          <p class="text-sm text-gray-500 mt-1">
+          <p class="text-sm text-slate-400 mt-1">
             {{ $t('onboarding.step4Subtitle') }}
           </p>
         </div>
@@ -268,23 +268,23 @@
           <div
             v-for="cat in categories"
             :key="cat.key"
-            class="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+            class="p-4 bg-slate-800/60 rounded-2xl border border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
           >
             <div>
-              <span class="text-sm font-bold text-gray-900">{{ cat.name }}</span>
-              <p class="text-xs text-gray-500 mt-0.5">
+              <span class="text-sm font-bold text-white">{{ cat.name }}</span>
+              <p class="text-xs text-slate-400 mt-0.5">
                 {{ $t(`onboarding.${fitPreferences[cat.key]}Desc`) }}
               </p>
             </div>
 
             <!-- Fit Segmented Control -->
-            <div class="grid grid-cols-3 gap-1 bg-gray-200/60 p-1 rounded-xl shrink-0">
+            <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-700 shrink-0">
               <button
                 v-for="fitOption in ['fitted', 'regular', 'loose'] as const"
                 :key="fitOption"
                 type="button"
                 class="px-3 py-1.5 text-xs font-bold rounded-lg transition"
-                :class="fitPreferences[cat.key] === fitOption ? 'bg-white text-indigo-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'"
+                :class="fitPreferences[cat.key] === fitOption ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'"
                 @click="fitPreferences[cat.key] = fitOption"
               >
                 {{ $t(`common.${fitOption}`) }}
@@ -295,13 +295,13 @@
       </div>
 
       <!-- ================= ACTIONS / FOOTER ================= -->
-      <div class="flex items-center justify-between pt-6 border-t border-gray-100">
+      <div class="flex items-center justify-between pt-6 border-t border-slate-800">
         <!-- Skip button: allowed for step 1, 3, 4 (NEVER step 2 consent) -->
         <div>
           <button
             v-if="currentStep !== 2"
             type="button"
-            class="text-xs font-semibold text-gray-500 hover:text-gray-800 transition"
+            class="text-xs font-bold text-slate-400 hover:text-white transition"
             @click="handleSkip"
           >
             {{ $t('onboarding.skip') }}
@@ -312,7 +312,7 @@
         <button
           type="button"
           :disabled="currentStep === 2 && !hasGivenConsent"
-          class="py-3 px-6 rounded-2xl font-bold text-sm text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-lg shadow-indigo-100 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+          class="py-3.5 px-7 rounded-2xl font-bold text-sm text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition shadow-lg shadow-indigo-600/30 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
           @click="handleNext"
         >
           <span>{{ currentStep === 4 ? $t('onboarding.finish') : $t('onboarding.next') }}</span>

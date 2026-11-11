@@ -1,79 +1,265 @@
 <template>
-  <div class="min-h-[80vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-      <div class="text-center">
-        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
-          {{ $t('auth.signupTitle') }}
-        </h2>
-        <p class="mt-2 text-sm text-gray-600">
-          {{ $t('auth.signupSubtitle') }}
-        </p>
+  <div class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-8 sm:py-12 relative overflow-hidden">
+    <!-- Ambient Background Glows -->
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-purple-600/20 via-indigo-600/10 to-transparent blur-3xl opacity-70"></div>
+    <div class="pointer-events-none absolute -bottom-40 left-10 w-[450px] h-[450px] bg-indigo-600/15 blur-3xl rounded-full"></div>
+    <div class="pointer-events-none absolute -bottom-40 right-10 w-[450px] h-[450px] bg-purple-600/15 blur-3xl rounded-full"></div>
+
+    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+      
+      <!-- Left Fashion Showcase Glimpse (Women's Pret & Ethnic Fashion) -->
+      <div class="hidden lg:flex lg:col-span-3 flex-col gap-4 animate-fadeIn">
+        <div class="group relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 backdrop-blur-md shadow-2xl transition hover:border-indigo-500/40">
+          <div class="aspect-[3/4] relative overflow-hidden">
+            <img
+              src="/images/fashion/women-pret.jpg"
+              alt="Pakistani Women's Embroidered Pret"
+              class="w-full h-full object-cover object-top transition duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-400/30 backdrop-blur-md">
+                <span>🌸</span> Women's Pret
+              </span>
+            </div>
+            <div class="absolute bottom-4 inset-x-4 space-y-1">
+              <p class="text-xs font-black text-white tracking-wide">
+                Universal Pret Sizing
+              </p>
+              <p class="text-[11px] text-slate-300 leading-snug">
+                One measurement profile covers Khaadi, Sapphire, Gul Ahmed & J. Kurtas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy & Control Card -->
+        <div class="p-4 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-sm text-xs space-y-1.5">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold">
+            <span>🛡️</span>
+            <span>100% Private & Encrypted</span>
+          </div>
+          <p class="text-[11px] text-slate-400 leading-relaxed">
+            Your body measurements are strictly confidential and never sold to third-party retailers.
+          </p>
+        </div>
       </div>
 
-      <form class="mt-8 space-y-6" @submit.prevent="handleSignup">
-        <!-- Error Banner -->
-        <div v-if="errorMessage" class="p-4 bg-rose-50 border border-rose-200 rounded-xl text-xs font-semibold text-rose-700">
-          {{ errorMessage }}
-        </div>
+      <!-- Center: Obsidian Luxury Modern Signup Card -->
+      <div class="lg:col-span-6 w-full max-w-md mx-auto">
+        <div class="bg-slate-900/90 backdrop-blur-2xl p-7 sm:p-10 rounded-3xl shadow-2xl border border-slate-800 relative space-y-7">
+          
+          <!-- Top subtle glow strip -->
+          <div class="absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
 
-        <!-- Success/Info Banner -->
-        <div v-if="successMessage" class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-semibold text-emerald-800 leading-relaxed">
-          {{ successMessage }}
-        </div>
-
-        <div class="space-y-4 rounded-md">
-          <div>
-            <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">
-              {{ $t('auth.emailLabel') }}
-            </label>
-            <input
-              id="email"
-              v-model="email"
-              type="email"
-              required
-              class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
-              placeholder="you@example.com"
-            />
+          <!-- Header -->
+          <div class="text-center space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-400/20 text-purple-300 text-[11px] font-extrabold uppercase tracking-wider">
+              <span>🇵🇰 1-Time Universal Profile</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              {{ $t('auth.signupTitle') }}
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-xs mx-auto">
+              {{ $t('auth.signupSubtitle') }}
+            </p>
           </div>
 
-          <div>
-            <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">
-              {{ $t('auth.passwordLabel') }}
-            </label>
-            <input
-              id="password"
-              v-model="password"
-              type="password"
-              minlength="6"
-              required
-              class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
-              placeholder="At least 6 characters"
+          <!-- Form -->
+          <form class="space-y-5" @submit.prevent="handleSignup">
+            <!-- Error Banner -->
+            <div
+              v-if="errorMessage"
+              class="p-4 bg-rose-950/60 border border-rose-800/80 rounded-2xl text-xs font-semibold text-rose-200 leading-relaxed animate-fadeIn"
+            >
+              <div class="flex items-start gap-2">
+                <span class="text-rose-400 text-sm">⚠️</span>
+                <span>{{ errorMessage }}</span>
+              </div>
+            </div>
+
+            <!-- Success/Info Banner -->
+            <div
+              v-if="successMessage"
+              class="p-4 bg-emerald-950/60 border border-emerald-800/80 rounded-2xl text-xs font-semibold text-emerald-200 leading-relaxed animate-fadeIn"
+            >
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-400 text-sm">✓</span>
+                <span>{{ successMessage }}</span>
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="space-y-1.5">
+              <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-300">
+                {{ $t('auth.emailLabel') }}
+              </label>
+              <div class="relative">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.206" />
+                  </svg>
+                </div>
+                <input
+                  id="email"
+                  v-model="email"
+                  type="email"
+                  required
+                  style="color-scheme: dark;"
+                  class="w-full rounded-2xl border border-slate-700 bg-slate-800/90 pl-11 pr-4 py-3.5 text-sm text-white font-medium placeholder:text-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition shadow-inner"
+                  placeholder="you@example.com"
+                />
+              </div>
+            </div>
+
+            <!-- Password Field with Show/Hide -->
+            <div class="space-y-1.5">
+              <label for="password" class="block text-xs font-bold uppercase tracking-wider text-slate-300">
+                {{ $t('auth.passwordLabel') }}
+              </label>
+              <div class="relative">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <input
+                  id="password"
+                  v-model="password"
+                  :type="showPassword ? 'text' : 'password'"
+                  minlength="6"
+                  required
+                  style="color-scheme: dark;"
+                  class="w-full rounded-2xl border border-slate-700 bg-slate-800/90 pl-11 pr-11 py-3.5 text-sm text-white font-medium placeholder:text-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition shadow-inner"
+                  placeholder="At least 6 characters"
+                />
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-white transition"
+                  @click="showPassword = !showPassword"
+                >
+                  <svg v-if="!showPassword" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  <svg v-else class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              :disabled="loading"
+              class="w-full py-4 px-6 rounded-2xl font-black text-sm text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-indigo-700 hover:from-purple-500 hover:to-indigo-600 transition-all shadow-xl shadow-purple-600/30 hover:scale-[1.01] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              <span v-if="loading" class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+              <span v-if="loading">{{ $t('common.loading') }}</span>
+              <span v-else class="flex items-center gap-2">
+                <span>✨</span>
+                <span>{{ $t('auth.signupBtn') }}</span>
+              </span>
+            </button>
+
+            <!-- Bottom Navigation Links -->
+            <div class="pt-2 text-center space-y-2">
+              <div>
+                <NuxtLink
+                  :to="localePath('/login')"
+                  class="text-xs font-bold text-indigo-400 hover:text-indigo-300 transition"
+                >
+                  {{ $t('auth.hasAccount') }}
+                </NuxtLink>
+              </div>
+              <div>
+                <NuxtLink
+                  :to="localePath('/try')"
+                  class="text-[11px] font-semibold text-slate-400 hover:text-slate-200 transition"
+                >
+                  ⚡ Or continue as Guest to test sizing &rarr;
+                </NuxtLink>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right Fashion Showcase Glimpses (Men's & Kids Fashion) -->
+      <div class="hidden lg:flex lg:col-span-3 flex-col gap-4 animate-fadeIn">
+        <!-- Men's Card -->
+        <div class="group relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 backdrop-blur-md shadow-2xl transition hover:border-indigo-500/40">
+          <div class="aspect-[4/3] relative overflow-hidden">
+            <img
+              src="/images/fashion/men-style.jpg"
+              alt="Cougar Men's Contemporary Fashion"
+              class="w-full h-full object-cover object-top transition duration-700 group-hover:scale-105"
             />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-400/30 backdrop-blur-md">
+                <span>🧥</span> Men's Style
+              </span>
+            </div>
+            <div class="absolute bottom-3 inset-x-3">
+              <p class="text-xs font-black text-white">Cougar Men's Collection</p>
+              <p class="text-[10px] text-slate-300">Jackets, shirts & tailored denim sizing</p>
+            </div>
           </div>
         </div>
 
-        <div>
-          <button
-            type="submit"
-            :disabled="loading"
-            class="w-full flex justify-center py-3.5 px-4 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition shadow-md shadow-indigo-100 disabled:opacity-50"
-          >
-            <span v-if="loading">{{ $t('common.loading') }}</span>
-            <span v-else>{{ $t('auth.signupBtn') }}</span>
-          </button>
+        <!-- Kids Card -->
+        <div class="group relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 backdrop-blur-md shadow-2xl transition hover:border-indigo-500/40">
+          <div class="aspect-[4/3] relative overflow-hidden">
+            <img
+              src="/images/fashion/kids-wear.jpg"
+              alt="Cougar Kids Fashion"
+              class="w-full h-full object-cover object-center transition duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 backdrop-blur-md">
+                <span>🎈</span> Kids Collection
+              </span>
+            </div>
+            <div class="absolute bottom-3 inset-x-3">
+              <p class="text-xs font-black text-white">Junior Fashion Wear</p>
+              <p class="text-[10px] text-slate-300">Height-based children's sizing</p>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="text-center">
-          <NuxtLink :to="localePath('/login')" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800">
-            {{ $t('auth.hasAccount') }}
-          </NuxtLink>
+    </div>
+
+    <!-- Mobile Fashion Glimpse Strip (Visible on mobile/tablet) -->
+    <div class="lg:hidden mt-8 w-full max-w-md mx-auto grid grid-cols-3 gap-2">
+      <div class="rounded-2xl overflow-hidden border border-slate-800 relative aspect-square">
+        <img src="/images/fashion/women-pret.jpg" alt="Women" class="w-full h-full object-cover object-top" />
+        <div class="absolute inset-0 bg-slate-950/40 flex items-end p-1.5">
+          <span class="text-[9px] font-bold text-white">Women</span>
         </div>
-      </form>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-slate-800 relative aspect-square">
+        <img src="/images/fashion/men-style.jpg" alt="Men" class="w-full h-full object-cover object-top" />
+        <div class="absolute inset-0 bg-slate-950/40 flex items-end p-1.5">
+          <span class="text-[9px] font-bold text-white">Men</span>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-slate-800 relative aspect-square">
+        <img src="/images/fashion/kids-wear.jpg" alt="Kids" class="w-full h-full object-cover object-center" />
+        <div class="absolute inset-0 bg-slate-950/40 flex items-end p-1.5">
+          <span class="text-[9px] font-bold text-white">Kids</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const supabase = useSupabaseClient()
 const localePath = useLocalePath()
 const toast = useToast()
@@ -81,6 +267,7 @@ const { t } = useI18n()
 
 const email = ref('')
 const password = ref('')
+const showPassword = ref(false)
 const loading = ref(false)
 const errorMessage = ref('')
 const successMessage = ref('')
@@ -101,18 +288,16 @@ async function handleSignup() {
       return
     }
 
-    if (data?.session) {
+    if (data.session) {
       toast.success(t('auth.signupSuccess'))
       await navigateTo(localePath('/onboarding'))
-    } else if (data?.user && !data.session) {
-      // Email confirmation is required by Supabase
-      successMessage.value = "Account created! A confirmation email has been sent. Please click the link in your email to confirm your account, then proceed to Log in. (Or turn off 'Confirm email' in your Supabase Auth dashboard for instant local testing)."
+    } else {
+      successMessage.value = "Confirmation email sent! Please check your inbox to confirm your email before logging in. (Tip: You can also disable 'Confirm email' in Supabase Auth settings to sign in immediately)."
     }
   } catch (err: any) {
-    errorMessage.value = err.message || 'An error occurred during registration'
+    errorMessage.value = err.message || 'An unexpected error occurred during signup'
   } finally {
     loading.value = false
   }
 }
 </script>
-
